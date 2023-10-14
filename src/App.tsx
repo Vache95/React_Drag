@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+const initialData = {
+  columns: {
+    'column-1': {
+      id: 'column-1',
+      title: 'TO-DO',
+      taskIds: [{ id: 1, content: '111' }, { id: 2, content: '22222' }],
+    },
+    'column-2': {
+      id: 'column-2',
+      title: 'IN-PROGRESS',
+      taskIds: [{ id: 3, content: '333333' }],
+    },
+    'column-3': {
+      id: 'column-3',
+      title: 'COMPLETED',
+      taskIds: [{ id: 4, content: '4444444' }, { id: 5, content: '5555' }],
+    },
+  }
+}
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <h1>Todo Custom Dragn Drop</h1>
+      <div className="wrapper__container">
+        {
+          Object.values(initialData.columns).map((item) => (
+            <div className="column">
+              <h3>{item.title}</h3>
+              {
+                item.taskIds.map((ts) => (
+                  <div className="task" draggable={true}>{ts.content}</div>
+                ))
+              }
+
+            </div>
+          ))
+        }
+
+      </div>
     </div>
   );
 }
